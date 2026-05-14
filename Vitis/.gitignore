@@ -1,0 +1,32 @@
+# 빌드 출력 디렉토리
+/build
+/export
+
+# 오브젝트 파일 및 의존성 파일
+*.o
+*.d
+
+# 로그 파일
+/logs
+*.log
+
+# 잠금 파일
+*.lock
+
+# 바이너리/이미지 파일
+*.bin
+*.pdi
+
+# Vitis 워크스페이스 설정
+.vitisWorkspace.json
+
+# IDE 내부 파일
+_ide/logs
+_ide/.wsdata
+_ide/.peers.ini
+
+# Claude Code 내부 파일
+.claude/
+
+# CLAUDE.md
+CLAUDE.md

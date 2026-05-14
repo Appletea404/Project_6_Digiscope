@@ -1,0 +1,7 @@
+# OS 생성 파일
+.DS_Store
+Thumbs.db
+
+# Claude Code 내부 파일
+.claude/
+CLAUDE.md
