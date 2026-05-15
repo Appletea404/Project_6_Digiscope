@@ -25,6 +25,15 @@ _ide/logs
 _ide/.wsdata
 _ide/.peers.ini
 
+# 비트스트림 및 하드웨어 바이너리 (Vivado 결과물)
+*.bit
+*.mmi
+
+# Vitis 툴 생성 디렉토리
+.rigel_lopper/
+_ide/
+.Xil/
+
 # Claude Code 내부 파일
 .claude/
 
