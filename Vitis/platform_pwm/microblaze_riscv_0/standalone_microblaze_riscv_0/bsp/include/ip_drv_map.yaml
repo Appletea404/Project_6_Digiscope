@@ -1,0 +1,6 @@
+axi_uartlite_0:
+- axi_uartlite
+- uartlite
+myip_pwm_0:
+- myip_pwm
+- None

@@ -1,0 +1,4 @@
+domain_path: /home/leeseokhyun/workspace_ondevice_2/Team_Project/6th_Team_Project/Vitis/platform_pwm/export/platform_pwm/sw/standalone_microblaze_riscv_0
+app_src_dir: /opt/Xilinx/Vitis/2024.2/data/embeddedsw/lib/sw_apps/hello_world
+template: hello_world
+lang: c
