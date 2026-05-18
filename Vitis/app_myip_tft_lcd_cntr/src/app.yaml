@@ -1,0 +1,4 @@
+domain_path: /home/parkdoyoung/workspace_ondevice_2/Project_DIGISCOPE/DIGISCOPE_Vitis/myip_tft_lcd_cntr/export/myip_tft_lcd_cntr/sw/standalone_microblaze_riscv_0
+app_src_dir: /opt/Xilinx/Vitis/2024.2/data/embeddedsw/lib/sw_apps/hello_world
+template: hello_world
+lang: c
