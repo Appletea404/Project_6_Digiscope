@@ -1,0 +1,16 @@
+{
+  "name": "app_DIGISCOPE_TEST1",
+  "type": "HOST",
+  "platform": "platform_DIGISCOPE_TEST1",
+  "domain": "standalone_microblaze_riscv_0",
+  "cpuInstance": "microblaze_riscv_0",
+  "cpuType": "microblaze_riscv",
+  "os": "standalone",
+  "configuration": {
+    "componentType": "HOST",
+    "hostToolchainConfigurations": []
+  },
+  "domainRealName": "standalone_microblaze_riscv_0",
+  "applicationFlow": "EMBEDDED",
+  "template": "hello_world"
+}

@@ -1,0 +1,15 @@
+CLCD_0:
+- CLCD
+- None
+axi_gpio_0:
+- axi_gpio
+- gpio
+axi_uartlite_0:
+- axi_uartlite
+- uartlite
+myip_pwm_0:
+- myip_pwm
+- None
+myip_tft_lcd_cntr_0:
+- myip_tft_lcd_cntr
+- None
