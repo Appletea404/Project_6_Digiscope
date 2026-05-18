@@ -41,6 +41,9 @@ rundef.*
 *.backup.jou
 .Xil/
 
+# Vivado 블록 디자인 UI 상태 파일 (열고 닫을 때마다 자동 변경)
+**/ui/*.ui
+
 # 백업 파일
 *.bak
 

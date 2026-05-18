@@ -1,5 +1,0 @@
-create libxil.a
-addlib /home/parkdoyoung/workspace_ondevice_2/Project_DIGISCOPE/DIGISCOPE_Vitis/platform_DIGISCOPE_TEST1/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/libsrc/build_configs/gen_bsp/libsrc/uartlite/src/libuartlite.a
-addlib /home/parkdoyoung/workspace_ondevice_2/Project_DIGISCOPE/DIGISCOPE_Vitis/platform_DIGISCOPE_TEST1/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/libsrc/build_configs/gen_bsp/libsrc/gpio/src/libgpio.a
-save
-end

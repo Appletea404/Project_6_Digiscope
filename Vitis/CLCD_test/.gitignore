@@ -1,21 +1,31 @@
-# Ignore build output directory
+# 빌드 출력 디렉토리
 /build
 /export
 
-# Ignore object files and dependent files
-.o
-.d
+# 오브젝트 파일 및 의존성 파일
+*.o
+*.obj
+*.d
 
-#Ignore logs folder and log files
+# 로그 파일
 /logs
-.log
+*.log
 
-#Ignore lock files
-.lock
+# 잠금 파일
+*.lock
 
-.bin
-.pdi
+# 바이너리 파일
+*.bin
+*.pdi
+
+# Vitis 워크스페이스 설정
 .vitisWorkspace.json
 
-_ide/logs
-_ide/.wsdata
+# IDE 내부 파일
+_ide/
+
+# 빌드 시스템이 자동 생성하는 파일
+compile_commands.json
+
+# clangd 캐시
+.cache/

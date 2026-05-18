@@ -1,25 +1,38 @@
-# Ignore build output directory
+# 빌드 출력 디렉토리
 /build
 /export
 
-# Ignore object files and dependent files
-.o
-.d
+# 오브젝트 파일 및 의존성 파일
+*.o
+*.obj
+*.d
 
-#Ignore logs folder and log files
+# 로그 파일
 /logs
-.log
+*.log
 
-#Ignore lock files
-.lock
+# 잠금 파일
+*.lock
 
-.bin
-.pdi
+# 바이너리 파일
+*.bin
+*.pdi
+
+# Vitis 워크스페이스 설정
 .vitisWorkspace.json
 
-_ide/logs
-_ide/.wsdata
+# IDE 내부 파일
+_ide/
 
 # XSA에서 자동 생성되는 디렉토리
 microblaze_riscv_0/
 hw/sdt/
+
+# BSP 컴파일 라이브러리
+bsp/lib/
+
+# BSP CMake 빌드 디렉토리
+bsp/libsrc/build_configs/gen_bsp/
+
+# BSP 자동 생성 설정 파일
+bsp/bsp.yaml

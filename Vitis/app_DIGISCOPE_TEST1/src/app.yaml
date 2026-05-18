@@ -1,4 +1,4 @@
-domain_path: /home/parkdoyoung/workspace_ondevice_2/Project_DIGISCOPE/DIGISCOPE_Vitis/platform_DIGISCOPE_TEST1/export/platform_DIGISCOPE_TEST1/sw/standalone_microblaze_riscv_0
+domain_path: /home/appletea/workspace_onedevice_2/Project_6_Oscilloscope/Vitis/platform_DIGISCOPE_TEST1/export/platform_DIGISCOPE_TEST1/sw/standalone_microblaze_riscv_0
 app_src_dir: /opt/Xilinx/Vitis/2024.2/data/embeddedsw/lib/sw_apps/hello_world
 template: hello_world
 lang: c
