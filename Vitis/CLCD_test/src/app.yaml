@@ -1,4 +1,0 @@
-domain_path: /home/appletea/workspace_onedevice_2/Project_6_Oscilloscope/Vitis/platform_CLCD/export/platform_CLCD/sw/standalone_microblaze_riscv_0
-app_src_dir: /opt/Xilinx/Vitis/2024.2/data/embeddedsw/lib/sw_apps/hello_world
-template: hello_world
-lang: c
