@@ -11,7 +11,7 @@ Basys3(Artix-7 FPGA)와 MicroBlaze RISC-V 소프트 프로세서를 기반으로
 ## 2. Key Features (주요 기능)
 
 ### 📡 PWM 신호 생성 (Signal Generation)
-- UART 명령(`p<주기us>`, `d<듀티%>`)으로 주기 및 듀티 사이클 실시간 조정
+- UART 명령(`p(Period us)`, `d(Duty %)`)으로 주기 및 듀티 사이클 실시간 조정
 - SW[0] 스위치로 PWM 파형 출력 ON/OFF 제어
 
 ### 📊 PWM 신호 측정 (Signal Measurement)
@@ -47,9 +47,9 @@ Basys3(Artix-7 FPGA)와 MicroBlaze RISC-V 소프트 프로세서를 기반으로
 ![Verilog](https://img.shields.io/badge/Verilog-FF6600?style=for-the-badge&logo=v&logoColor=white)![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 
 ### 3.2 Development Environment (개발 환경)
-| ![vivado](images/vivado.png) | ![vscode](images/vitis.jpg) |
-| :---: | :---: |
-| **AMD Vivado** | **AMD Vitis** |
+| ![vivado](images/vivado.png) | ![vitis](images/vitis.jpg) | ![vscode](images/vscode.png) |
+| :---: | :---: | :---: |
+| **AMD Vivado** | **AMD Vitis** | **VS Code** |
 
 ### 3.3 Collaboration Tools (협업 도구)
 
