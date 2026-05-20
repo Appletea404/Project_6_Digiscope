@@ -96,36 +96,20 @@ Project_6_Oscilloscope/
 └── README.md
 ```
 
-### 4.2 System Architecture (시스템 아키텍처)
+### 4.2 RTL Block Design (RTL 블록 디자인)
 
-```
-                    ┌──────────────────────────────────────────┐
-                    │              Basys3 (Artix-7)             │
-                    │                                          │
-  [UART]  ◄────────►│  MicroBlaze RISC-V                       │
-  [BTN 0~3] ───────►│  (AXI Master)                            │
-                    │       │                                  │
-                    │  AXI SmartConnect                        │
-                    │   ├── myip_pwm ──── pwm_out ─────────────►│ PMOD (출력)
-                    │   │           ◄─── pwm_in  ◄─────────────│ PMOD (입력, 루프백)
-                    │   ├── myip_tft_lcd_cntr ─── SPI ─────────►│ TFT LCD (ILI9341)
-                    │   ├── CLCD ───────────────────────────────►│ Character LCD (16x2)
-                    │   ├── AXI UARTLite ──────────────────────►│ USB-UART
-                    │   └── AXI GPIO ◄─────────────────────────│ BTN[3:0]
-                    └──────────────────────────────────────────┘
-```
+![RTL BD](images/DIGISCOPE_RTL_BD.png)
+
 
 ### 4.3 Hardware Block Diagram (하드웨어 블록다이어그램)
 
-![BlockDiagram](images/HW_BLOCK_DIAGRAM.png)
+![BlockDesign](images/DIGISCOPE_BlockDesign.png)
 
-### 4.4 RTL Block Diagram (RTL 블록다이어그램)
 
-![RTLBlockDiagram](images/RTL_Blockdiagram.png)
 
 ### 4.5 Flow Chart (순서도)
 
-![FlowChart](images/System_Flow_Horizontal.png)
+![Flowchart](images/DIGISCOPE_Flowchart.png)
 
 
 ## 🔌 5. Custom IP Description (커스텀 IP 설명)
