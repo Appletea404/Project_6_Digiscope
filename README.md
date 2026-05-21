@@ -157,7 +157,7 @@ Project_6_Oscilloscope/
 
 | 역할 | 설명 |
 | :--- | :--- |
-| 인터페이스 | 16×2 Character LCD, I2C(PCF8574) 경유 4-bit 병렬 인터페이스 |
+| 인터페이스 | 16×2 Character LCD(HD44780), I2C(PCF8574) 경유 4-bit 병렬 인터페이스 |
 | AXI 연동 | AXI-Lite Slave를 통해 I2C 데이터 및 send 트리거 수신 |
 
 **AXI Register Map**
@@ -172,7 +172,6 @@ Project_6_Oscilloscope/
 
 ## 💻 6. UART Command Interface (UART 명령어)
 
-TFT LCD에 표시된 파형의 PWM 파라미터를 시리얼 터미널(115200 baud)에서 실시간으로 변경할 수 있다.
 
 | 명령어 | 예시 | 설명 |
 | :--- | :--- | :--- |
@@ -181,27 +180,31 @@ TFT LCD에 표시된 파형의 PWM 파라미터를 시리얼 터미널(115200 ba
 | `s` | `s` | 현재 측정값 출력 (주기, HIGH 시간, 듀티, 주파수) |
 | `help` | `help` | 명령어 목록 출력 |
 
-> **참고:** SW[0] = 1 일 때 PWM 출력 활성화, SW[0] = 0 일 때 출력 정지
+> PWM 파라미터를 UART 통신을 통해 PC 터미널에서 변경 가능
 
 
 ## 🏁 7. Final Product & Demonstration (완성품 및 시연)
 
 ### 7.1 Oscilloscope Screen Capture (오실로스코프 화면)
 
-| **Encoder 파형 1** | **Encoder 파형 2** |
+| **RUN 모드** | **White 테마** |
 | :---: | :---: |
-| <img src="images/Encoder1.JPG" width="350"> | <img src="images/Encoder2.JPG" width="350"> |
+| <img src="images/Run.jpg" width="350"> | <img src="images/White_theme.jpg" width="350"> |
 
-| **Encoder 파형 3** | **Encoder 파형 4** |
+| **시간 스케일 500µs/div** | **시간 스케일 5ms/div** |
 | :---: | :---: |
-| <img src="images/Encoder3.JPG" width="350"> | <img src="images/Encoder4.JPG" width="350"> |
+| <img src="images/Horizontal_500u.jpg" width="350"> | <img src="images/Horizontal_5ms.jpg" width="350"> |
+
+| **전압 스케일 3.3V/div** | **전압 스케일 5V/div** |
+| :---: | :---: |
+| <img src="images/vertical_3.3.jpg" width="350"> | <img src="images/vertical_5v.jpg" width="350"> |
 
 <br>
 
 
-## 6. Troubleshooting (문제 해결 기록)
+## 8. Troubleshooting (문제 해결 기록)
 
-### 6.1 TFT LCD 초기화 타이밍 오류 (TFT Init Timing Error)
+### 8.1 TFT LCD 초기화 타이밍 오류 (TFT Init Timing Error)
 
 🔍 **Issue (문제 상황)**
 
@@ -223,7 +226,7 @@ TFT LCD에 표시된 파형의 PWM 파라미터를 시리얼 터미널(115200 ba
 
 ---
 
-### 6.2 PWM 듀티 계산 타이밍 에러 (Duty Calculation Timing Error)
+### 8.2 PWM 듀티 계산 타이밍 에러 (Duty Calculation Timing Error)
 
 🔍 **Issue (문제 상황)**
 
@@ -245,7 +248,7 @@ TFT LCD에 표시된 파형의 PWM 파라미터를 시리얼 터미널(115200 ba
 
 ---
 
-### 6.3 PWM 측정 정확도 문제 (Measurement Accuracy)
+### 8.3 PWM 측정 정확도 문제 (Measurement Accuracy)
 
 🔍 **Issue (문제 상황)**
 
