@@ -5,27 +5,27 @@
 # 📈 Project 6 DIGISCOPE
 
 ## **1. Project Summary (프로젝트 요약)**
-Basys3(Artix-7 FPGA)와 MicroBlaze RISC-V 소프트 프로세서를 기반으로 PWM 신호를 생성·측정하여 TFT LCD에 파형을 실시간으로 표시하는 디지털 오실로스코프(DIGISCOPE) 구현
+Basys3(Artix-7 FPGA)와 Custom IP를 기반으로 PWM 신호를 생성·측정하여 TFT LCD에 파형을 실시간으로 표시하는 디지털 오실로스코프(DIGISCOPE) 구현
 
 
 ## 2. Key Features (주요 기능)
 
-### 📡 PWM 신호 생성 (Signal Generation)
+### 📡 Signal Generation (PWM 신호 생성) 
 - UART 명령(`p(Period us)`, `d(Duty %)`)으로 주기 및 듀티 사이클 실시간 조정
 - SW[0] 스위치로 PWM 파형 출력 ON/OFF 제어
 
-### 📊 PWM 신호 측정 (Signal Measurement)
+### 📊 Signal Measurement (PWM 신호 측정) 
 - 입력 PWM 신호의 주기(period), HIGH 시간(high count)을 클럭 카운트로 측정
 - 주파수(Hz) 및 듀티(%) 계산은 MicroBlaze RISC-V(C 코드)에서 수행
 
-### 🖥️ TFT LCD 오실로스코프 화면 (Oscilloscope Display)
-- 320×240 해상도, 10×8 그리드 구성
+### 🖥️ Waveform Display (파형 표시)
+- 320×240 TFT LCD에 PWM 파형을 실시간 렌더링
 - 전압 스케일: 1V / 3.3V / 5V per div
 - 시간 스케일: 100µs / 500µs / 1ms / 5ms per div
 - RUN / STOP 모드 전환
 - Dark / White 테마 전환
 
-### ⌨️ 버튼 제어 (Button Control)
+### ⌨️ Button Control (버튼 제어)
 | 버튼 | 기능 |
 | :---: | :---: |
 | BTN0 | 전압 스케일 변경 (V/div) |
@@ -33,10 +33,11 @@ Basys3(Artix-7 FPGA)와 MicroBlaze RISC-V 소프트 프로세서를 기반으로
 | BTN2 | RUN / STOP 전환 |
 | BTN3 | Dark / White 테마 전환 |
 
-### 💬 CLCD 상태 표시 (16×2 Character LCD)
+### 💬 Status Display (상태 표시)
+CLCD 에 현재 측정값 및 설정값을 텍스트로 표시
 ```
-[R] H:500u V:1V     ← 모드, 시간스케일, 전압스케일
-[D] F:1.0k D:50%    ← 테마, 주파수, 듀티
+[R] H:500u V:1V     ← RUN/STOP 모드, 시간 스케일, 전압 스케일
+[D] F:1.0k D:50%    ← Dark/White 테마, 측정 주파수, 측정 듀티
 ```
 
 
@@ -114,7 +115,7 @@ Project_6_Oscilloscope/
 
 ## 🔌 5. Custom IP Description (커스텀 IP 설명)
 
-### 5.1 myip_pwm_1_0 — PWM 생성 및 측정 IP
+### 5.1 PWM Generate & Measure IP (PWM 생성 및 측정 IP)
 
 | 역할 | 설명 |
 | :--- | :--- |
@@ -133,7 +134,7 @@ Project_6_Oscilloscope/
 | 0x10 | measured_period_cnt | R | 측정된 PWM 주기 카운트 |
 | 0x14 | measured_high_cnt | R | 측정된 PWM HIGH 카운트 |
 
-### 5.2 myip_tft_lcd_cntr_1_0 — TFT LCD SPI 제어 IP
+### 5.2 TFT LCD SPI Control IP (TFT LCD SPI 제어 IP)
 
 | 역할 | 설명 |
 | :--- | :--- |
@@ -153,7 +154,7 @@ Project_6_Oscilloscope/
 
 > **동작 순서:** CMD / X / Y / COLOR 레지스터 설정 → CTRL[0]=1 write → busy=0 & done=1 확인
 
-### 5.3 CLCD_1_0 — Character LCD 제어 IP
+### 5.3 CLCD Control IP (CLCD 제어 IP)
 
 | 역할 | 설명 |
 | :--- | :--- |
@@ -185,7 +186,7 @@ Project_6_Oscilloscope/
 
 ## 🏁 7. Final Product & Demonstration (완성품 및 시연)
 
-### 7.1 Oscilloscope Screen Capture (오실로스코프 화면)
+### 7.1 Final Product (완성품)
 
 | **RUN 모드** | **White 테마** |
 | :---: | :---: |
@@ -201,68 +202,81 @@ Project_6_Oscilloscope/
 
 <br>
 
+### 7.2  Demonstration (시연 영상)
+
+<a href="https://youtube.com/playlist?list=PL6xfXHA4BYR-J2YdupXh5K9cHNIxC0NS_&si=U47yTLVHOldbWqq0" target="_blank">
+  <img src="images/youtube.jpg" alt="Watch Demo Video" width="300" />
+</a>
+
+*이미지를 클릭하면 시연 영상(유튜브)로 이동합니다.*
+
+
+
+
 
 ## 8. Troubleshooting (문제 해결 기록)
 
-### 8.1 TFT LCD 초기화 타이밍 오류 (TFT Init Timing Error)
+### 8.1 Official Datasheet vs Custom IP Mismatch (공식 데이터시트와 Custom IP 불일치)
 
 🔍 **Issue (문제 상황)**
 
-- Vitis 애플리케이션 시작 직후 TFT LCD에 화면이 출력되지 않거나 화면이 깨지는 현상 발생
+- HD44780 표준 초기화와 Custom IP 구조 불일치
 
 ❓ **Analysis (원인 분석)**
 
-- MicroBlaze RISC-V가 TFT IP에 명령을 보낼 때, ILI9341 LCD 컨트롤러의 초기화 시퀀스가 아직 완료되지 않은 상태에서 픽셀 명령이 전송됨
-- AXI 버스 전송 속도가 LCD SPI 초기화 속도보다 빠른 것이 원인
+- HD44780 표준 초기화 방식과 FPGA 기반 Custom IP 내부 동작 구조 불일치 발생
+- FSM 내부 200ms 대기 및 High/Low Nibble 분리 전송 방식 확인
 
 ❗ **Action (해결 방법)**
 
-- TFT IP의 CTRL 레지스터에 `INIT` 비트를 추가하여, LCD SPI 초기화가 완료된 후에만 1이 되도록 HW 설계
-- Vitis C 코드에서 `TFT_WaitInit()` 함수로 `INIT` 비트가 1이 될 때까지 폴링 후 명령 전송 시작
+- 초기화 단계별 추가 Delay 제거 후 초기 전원 안정화(50ms)만 유지
+- 기존 8bit 초기화 방식 (0x30→0x20)을 IP 구조에 맞게 4bit 초기화 방식 (0x32)로 변경
 
 ✅ **Result (결과)**
 
-- LCD 초기화 완료 이후에만 픽셀 명령이 전송되어 화면 깨짐 현상 해결
+- Custom IP 구조와 초기화 시퀀스를 일치시켜 LCD 초기화 성공
+- Vitis 단계에서 불필요한 대기 제거
 
 ---
 
-### 8.2 PWM 듀티 계산 타이밍 에러 (Duty Calculation Timing Error)
+### 8.2 SPI Bit Timing Transmission Error (SPI 통신 비트 타이밍 전송 오류)
 
 🔍 **Issue (문제 상황)**
 
-- Verilog 내부에서 `duty_count = period_count × duty_percent / 100` 연산 시 Vivado에서 타이밍 에러(Timing Violation) 발생
+- 전원과 SPI통신은 정상 확인되나 LCD가 빨간색 화면으로 전환되지 않음
 
 ❓ **Analysis (원인 분석)**
 
-- 32비트 나눗셈 연산으로 인해 조합 논리 경로(Combinational Logic Path)가 길어져, 100MHz 클럭의 단일 사이클 내에 연산을 완료하지 못함
+- 마지막 bit 전송 전 CS가 해제되어 초기화 명령이 손실되는 문제 확인
 
 ❗ **Action (해결 방법)**
 
-- Verilog에서 나눗셈 연산을 완전히 제거
-- `period_count`와 `duty_count`를 AXI 레지스터로 직접 받아 사용하는 구조로 변경
-- 듀티 계산은 Vitis C 코드(`uint64_t` 연산)에서 수행 후 계산된 카운트 값을 AXI register에 write
+- SPI TX FSM 수정 후 SCK rising edge 8회 발생을 보장
+- Sleep Out → Display ON → RED Fill 초기화 순서를 재구성
 
 ✅ **Result (결과)**
 
-- Timing Closure 달성 및 100MHz 동작 안정화
+- TFT LCD 초기화 완료 및 전체 RED 화면 출력 검증
 
 ---
 
-### 8.3 PWM 측정 정확도 문제 (Measurement Accuracy)
+### 8.3 TFT LCD Flickering & Button Response Delay (TFT LCD 깜빡임 및 버튼 응답 지연)
 
 🔍 **Issue (문제 상황)**
 
-- 낮은 듀티(0% 근처) 또는 높은 듀티(100% 근처) 설정 시 측정값이 갱신되지 않거나 0으로 표시되는 현상
+- TFT 화면 깜빡이며 버튼의 입력이 무시되는 현상이 발생
 
 ❓ **Analysis (원인 분석)**
 
-- 측정 로직이 rising/falling edge 발생을 기반으로 동작하기 때문에, 듀티가 0%에 가까우면 falling edge가 거의 발생하지 않고, 100%에 가까우면 falling edge 자체가 없음
+- TFT가 매 갱신마다 Fill -> Grid -> Wave를 전체 다시 그리는 구조 사용
+- Pixel 단위 Busy 대기로 CPU 점유율이 증가하여 화면 깜빡임과 버튼 지연 발생
 
 ❗ **Action (해결 방법)**
 
-- Vitis 애플리케이션에서 `period_count == 0` 조건을 감지하여 측정값을 보호 처리
-- 입력 미연결 또는 측정 초기 상태에서는 `period_us`를 기본값 1000µs로 설정하여 화면이 빈 상태로 표시되는 문제 방지
+- `Redraw` 플래그를 적용하여 필요한 경우에만 TFT 갱신
+- RUN 상태에서 약 1.5초 주기 갱신 및 버튼 디바운싱 적용
 
 ✅ **Result (결과)**
 
-- 엣지 케이스에서도 오실로스코프 화면이 정상적으로 표시되고, CLCD 수치가 0으로 깨지는 현상 해결
+- 불필요한 TFT 재렌더링 감소 및 버튼 입력 안정성 향상
+- 주기 제어 기반 화면 출력 안정화
