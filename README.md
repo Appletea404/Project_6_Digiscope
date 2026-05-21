@@ -118,7 +118,7 @@ Project_6_Oscilloscope/
 
 | 역할 | 설명 |
 | :--- | :--- |
-| PWM 생성 | AXI register에서 `period_count`, `duty_count`를 받아 100MHz 클럭 기준 PWM 출력 생성 |
+| PWM 생성 | AXI registerc에서 `period_count`, `duty_count`를 받아 100MHz 클럭 기준 PWM 출력 생성 |
 | 신호 측정 | 입력 PWM(루프백)의 rising/falling edge를 이용해 `measured_period_count`, `measured_high_count` 측정 |
 | Duty 계산 | Verilog에서 나눗셈을 하지 않고, Vitis C 코드에서 연산 처리 |
 
@@ -141,12 +141,33 @@ Project_6_Oscilloscope/
 | 명령/데이터 | 9-bit 데이터 (bit[8]=DC, bit[7:0]=데이터)로 명령과 픽셀 구분 |
 | AXI 연동 | FILL(전체 배경 채우기) / PIXEL(단일 픽셀 쓰기) 명령을 AXI register로 수신 |
 
+**AXI Register Map**
+
+| Offset | 이름 | 방향 | 설명 |
+| :---: | :--- | :---: | :--- |
+| 0x00 | CTRL | W/R | bit0=start 트리거(W) / bit1=busy, bit2=done, bit3=init_done(R) |
+| 0x04 | CMD | W | 명령 코드 (1=FILL: 전체 채우기, 2=PIXEL: 단일 픽셀 쓰기) |
+| 0x08 | X | W | X 좌표 [8:0] (0~319) |
+| 0x0C | Y | W | Y 좌표 [8:0] (0~239) |
+| 0x10 | COLOR | W | RGB565 색상 [15:0] |
+
+> **동작 순서:** CMD / X / Y / COLOR 레지스터 설정 → CTRL[0]=1 write → busy=0 & done=1 확인
+
 ### 5.3 CLCD_1_0 — Character LCD 제어 IP
 
 | 역할 | 설명 |
 | :--- | :--- |
-| 인터페이스 | 16×2 Character LCD, 4-bit 병렬 인터페이스 |
-| AXI 연동 | AXI-Lite Slave를 통해 커서 위치 및 출력 문자열 수신 |
+| 인터페이스 | 16×2 Character LCD, I2C(PCF8574) 경유 4-bit 병렬 인터페이스 |
+| AXI 연동 | AXI-Lite Slave를 통해 I2C 데이터 및 send 트리거 수신 |
+
+**AXI Register Map**
+
+| Offset | 이름 | 방향 | 설명 |
+| :---: | :--- | :---: | :--- |
+| 0x00 | CTRL | W | bit[6:0]=I2C 슬레이브 주소 (7-bit), bit7=send 트리거 (상승 에지) |
+| 0x04 | DATA | W | bit[7:0]=전송 데이터 바이트, bit8=RS (0=커맨드, 1=문자 데이터) |
+
+> **동작 순서:** DATA 레지스터 설정 → CTRL에 `(슬레이브 주소 | 0x80)` write → `슬레이브 주소` write (send 하강 에지)
 
 
 ## 💻 6. UART Command Interface (UART 명령어)
