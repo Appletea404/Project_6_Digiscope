@@ -5,8 +5,7 @@
 # 📈 Project 6 DIGISCOPE
 
 ## 1. Project Summary (프로젝트 요약)
-Basys3(Artix-7 FPGA)와 Custom IP를 기반으로 PWM 신호를 생성·측정하여 TFT LCD에 파형을 실시간으로 표시하는 디지털 오실로스코프(DIGISCOPE) 구현
-
+Basys3(Artix-7 FPGA) 기반 Custom IP를 활용한 PWM 생성·측정 및 TFT LCD·CLCD 연동 디지털 오실로스코프(DIGISCOPE) 구현
 
 ## 2. Key Features (주요 기능)
 
